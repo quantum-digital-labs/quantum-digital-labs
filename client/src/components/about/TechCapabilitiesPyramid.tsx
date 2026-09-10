@@ -17,7 +17,7 @@ const TECH_CAPABILITIES: readonly TechCapabilityItem[] = [
   {
     id: 'engineering',
     title: 'Web & apps',
-    summary: 'Engineering for products that scale.',
+    summary: 'Web, mobile, and software that can be maintained.',
     image: siteImages.serviceIt,
     imageAlt: 'Software engineering workspace',
     accent: '#0C2340',
@@ -25,7 +25,7 @@ const TECH_CAPABILITIES: readonly TechCapabilityItem[] = [
   {
     id: 'design',
     title: 'UI / UX',
-    summary: 'Research-led product design.',
+    summary: 'Research-led interfaces for real operators.',
     image: siteImages.projectCorporateWeb,
     imageAlt: 'Product design and interface craft',
     accent: '#B8956B',
@@ -33,7 +33,7 @@ const TECH_CAPABILITIES: readonly TechCapabilityItem[] = [
   {
     id: 'cloud',
     title: 'Cloud & AI',
-    summary: 'Automation and cloud operations.',
+    summary: 'Cloud operations, automation, and AI assists.',
     image: siteImages.projectCloud,
     imageAlt: 'Cloud infrastructure and automation',
     accent: '#2E5A8C',
@@ -41,7 +41,7 @@ const TECH_CAPABILITIES: readonly TechCapabilityItem[] = [
   {
     id: 'marketing',
     title: 'Marketing',
-    summary: 'Digital growth operations.',
+    summary: 'SEO, campaigns, content, and measurement.',
     image: siteImages.serviceMarketing,
     imageAlt: 'Digital marketing operations',
     accent: '#96784F',
@@ -49,7 +49,7 @@ const TECH_CAPABILITIES: readonly TechCapabilityItem[] = [
   {
     id: 'staffing',
     title: 'Recruitment',
-    summary: 'Staffing and hiring workflows.',
+    summary: 'Contract, permanent, and bulk hiring workflows.',
     image: siteImages.projectRecruitment,
     imageAlt: 'Recruitment and staffing session',
     accent: '#4A7AB0',
@@ -57,7 +57,7 @@ const TECH_CAPABILITIES: readonly TechCapabilityItem[] = [
   {
     id: 'training',
     title: 'Training',
-    summary: 'Practical program delivery.',
+    summary: 'Cohorts, internships, and hands-on programs.',
     image: siteImages.serviceTraining,
     imageAlt: 'Professional training delivery',
     accent: '#1A3D66',
@@ -103,7 +103,7 @@ export function TechCapabilitiesPyramid() {
       <SectionHeader
         eyebrow="Capabilities"
         title="Technology capabilities"
-        subtitle="Six practice areas in a clear square grid — each box shows real delivery work."
+        subtitle="Six practice areas we staff and deliver against — engineering, design, cloud, marketing, recruitment, and training."
       />
 
       <Box

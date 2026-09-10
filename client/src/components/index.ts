@@ -25,7 +25,19 @@ export {
   WhyQuantumSection,
   PresentationSlide,
 } from './home';
-export { AboutValuesSection, TechCapabilitiesPyramid } from './about';
+export {
+  AboutApproachSection,
+  AboutAudiencesSection,
+  AboutJourneySection,
+  AboutOfferingsSection,
+  AboutPracticesSection,
+  AboutPresenceSection,
+  AboutStorySection,
+  AboutValuesSection,
+  AboutVisionMission,
+  AboutWhyChooseSection,
+  TechCapabilitiesPyramid,
+} from './about';
 export { ChatbotWidget } from './chat';
 export { CareersSectionNav } from './careers/CareersSectionNav';
 export { InternshipsSectionNav } from './internships/InternshipsSectionNav';

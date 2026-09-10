@@ -8,61 +8,78 @@ import path from 'path';
 import { Pool } from 'pg';
 import { env, isDatabaseConfigured } from '../config/env';
 import { hashPassword } from '../utils/password';
+import { createPoolConfig } from './pool';
 
 type JsonObject = Record<string, unknown>;
 
 const ABOUT_CONTENT = {
   journey: [
     {
-      title: 'May 2026 — Launch',
-      text: 'Quantum Digital Labs began operations with a focused mix of technology, staffing, training, and marketing services.',
+      title: 'April 2026 — Company formed',
+      text: 'Quantum Digital Labs Pvt. Ltd. was incorporated in Hyderabad with a focused mix of technology, staffing, training, and marketing services.',
+    },
+    {
+      title: 'May 2026 — Operations launch',
+      text: 'Public site, service catalogues, careers, internships, and sample work went live so partners could evaluate us in the open.',
     },
     {
       title: 'First platform journeys',
-      text: 'Built clear paths for services, careers, internships, projects, and sample portfolio case studies.',
+      text: 'We mapped complete paths — quote, demo, job apply, internship apply — instead of publishing isolated landing pages.',
     },
     {
       title: 'Talent + delivery together',
-      text: 'Connected client work with internship roles and hiring loops so learning stays practical.',
+      text: 'Client work, internship roles, and hiring loops were connected so training stays practical and delivery stays staffed.',
+    },
+    {
+      title: 'Partner-ready experiences',
+      text: 'Demos, case-study samples, and content were refined so a first conversation starts from something you can inspect.',
     },
     {
       title: 'Today',
-      text: 'A young company shipping in public — refining demos, content, and partner-ready experiences.',
+      text: 'A young company still shipping in public — improving services, programs, and the platform that holds them together.',
     },
   ],
   vision:
-    'To become a trusted digital and talent solutions partner by creating innovative technology solutions, developing skilled professionals, and enabling organizations to grow through technology and people.',
+    'To become a trusted digital and talent solutions partner — building technology that organizations can actually run, developing skilled professionals, and helping businesses grow through both products and people.',
   mission:
-    'Our mission is to deliver reliable technology, staffing, training, digital marketing, and project solutions while creating meaningful career and learning opportunities for students and professionals.',
+    'Deliver reliable technology, staffing, training, digital marketing, and operations services, while creating career and learning paths that stay close to real client work. We measure success by shipped outcomes, clear communication, and skills people can reuse.',
   whyChoose: [
-    'End-to-end delivery with transparent milestones',
-    'Talent pathways through training and internships',
-    'Long-term support beyond launch day',
+    'End-to-end delivery with written milestones, demos, and a named point of contact',
+    'Talent pathways through training and internships, so capability grows with the work',
+    'Long-term support after launch — monitoring, fixes, and a backlog for what comes next',
+    'Cross-functional coverage (build, market, hire, train) without stitching five vendors together',
+    'Practical stacks chosen for maintainability, not fashion',
+    'Hyderabad-based delivery with transparent communication from brief to support',
   ],
   values: [
     {
       title: 'Integrity',
-      description: 'Honesty in every engagement and commitment.',
+      description:
+        'We say what we will do, then do it — including the constraints, not only the highlights.',
       accent: '#B8956B',
     },
     {
       title: 'Quality',
-      description: 'Craft over shortcuts — built to last.',
+      description:
+        'Craft over shortcuts. Design, code, and process are built so the next person can maintain them.',
       accent: '#2E5A8C',
     },
     {
       title: 'Practical',
-      description: 'Learning and delivery grounded in real work.',
+      description:
+        'Learning and delivery stay grounded in real briefs, real users, and work that can ship.',
       accent: '#0C2340',
     },
     {
       title: 'Clarity',
-      description: 'Transparent communication at every step.',
+      description:
+        'Scope, status, and trade-offs are written down. You should never have to guess where things stand.',
       accent: '#4A7AB0',
     },
     {
       title: 'Growth',
-      description: 'Continuous improvement for people and products.',
+      description:
+        'People and products improve in public — internships, reviews, and iteration after launch.',
       accent: '#96784F',
     },
   ],
@@ -574,7 +591,7 @@ async function seed() {
   }
 
   const data = await loadClientData();
-  const pool = new Pool({ connectionString: env.DATABASE_URL });
+  const pool = new Pool(createPoolConfig(env.DATABASE_URL));
 
   try {
     console.log('[seed] Upserting CMS content...');

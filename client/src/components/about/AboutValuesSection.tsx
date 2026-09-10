@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef, useState } from 'react';
+import { DEFAULT_VALUES } from '../../data/about';
 import { SectionHeader } from '../common/SectionHeader';
 
 export interface AboutValueItem {
@@ -9,34 +10,6 @@ export interface AboutValueItem {
   description: string;
   accent: string;
 }
-
-const DEFAULT_VALUES: readonly AboutValueItem[] = [
-  {
-    title: 'Integrity',
-    description: 'Honesty in every engagement and commitment.',
-    accent: '#B8956B',
-  },
-  {
-    title: 'Quality',
-    description: 'Craft over shortcuts — built to last.',
-    accent: '#2E5A8C',
-  },
-  {
-    title: 'Practical',
-    description: 'Learning and delivery grounded in real work.',
-    accent: '#0C2340',
-  },
-  {
-    title: 'Clarity',
-    description: 'Transparent communication at every step.',
-    accent: '#4A7AB0',
-  },
-  {
-    title: 'Growth',
-    description: 'Continuous improvement for people and products.',
-    accent: '#96784F',
-  },
-] as const;
 
 const NODE_SIZE = { xs: 108, md: 124 };
 
@@ -82,8 +55,8 @@ export function AboutValuesSection({ values = DEFAULT_VALUES }: AboutValuesSecti
     <Box ref={ref} component="section" sx={{ position: 'relative', width: '100%' }}>
       <SectionHeader
         eyebrow="Culture"
-        title="Values"
-        subtitle="Principles that connect how we invent, deliver, and partner — one linked path."
+        title="Values that shape the work"
+        subtitle="Five principles that connect how we invent, deliver, hire, and teach — one linked path from first conversation to support."
       />
 
       <Box
@@ -266,7 +239,7 @@ function ValueNode({
         sx={{
           textAlign: { xs: 'left', md: 'center' },
           lineHeight: 1.55,
-          maxWidth: { xs: 240, md: 160 },
+          maxWidth: { xs: '100%', md: 188 },
           pt: { md: 0.5 },
         }}
       >

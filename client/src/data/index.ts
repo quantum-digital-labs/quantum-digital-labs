@@ -1,5 +1,19 @@
 export { PLACEHOLDER_STATS } from './placeholders';
 export {
+  ABOUT_APPROACH,
+  ABOUT_AUDIENCES,
+  ABOUT_PILLARS,
+  ABOUT_PRACTICES,
+  ABOUT_SNAPSHOT,
+  ABOUT_STORY,
+  DEFAULT_JOURNEY,
+  DEFAULT_MISSION,
+  DEFAULT_VALUES,
+  DEFAULT_VISION,
+  DEFAULT_WHY,
+  VALUE_ACCENTS,
+} from './about';
+export {
   SERVICE_CATEGORIES,
   getCategoryById,
   getService,
