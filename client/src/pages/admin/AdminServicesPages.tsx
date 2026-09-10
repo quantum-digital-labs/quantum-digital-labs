@@ -40,7 +40,6 @@ import {
   fetchServices,
   isCustomCoverImage,
   updateService,
-  type ServiceCategoryContent,
   type ServiceItemContent,
 } from '../../services';
 

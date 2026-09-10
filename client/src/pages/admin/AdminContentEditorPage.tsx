@@ -129,7 +129,7 @@ export function AdminContentEditorPage({ kind }: AdminContentEditorPageProps) {
     setSaving(true);
     try {
       if (isNew) {
-        const created = (await api.create(body)) as ContentRecord;
+        const created = (await api.create(body)) as unknown as ContentRecord;
         if (autoBusinessId && created.id) {
           setItemId(String(created.id));
         }

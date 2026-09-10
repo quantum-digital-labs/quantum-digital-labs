@@ -16,6 +16,7 @@ import {
   FormErrorAlert,
   PageContainer,
   RouterButton,
+  SuccessPanel,
   TermsAccept,
   ValidationDialog,
 } from '../../components';

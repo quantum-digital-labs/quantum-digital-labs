@@ -258,11 +258,13 @@ function ApplicationList({
                     select: {
                       MenuProps: {
                         disableAutoFocusItem: true,
-                        TransitionProps: {
-                          onExited: () => {
-                            if (document.activeElement instanceof HTMLElement) {
-                              document.activeElement.blur();
-                            }
+                        slotProps: {
+                          transition: {
+                            onExited: () => {
+                              if (document.activeElement instanceof HTMLElement) {
+                                document.activeElement.blur();
+                              }
+                            },
                           },
                         },
                       },

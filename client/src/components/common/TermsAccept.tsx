@@ -120,7 +120,7 @@ export function TermsAccept<T extends FieldValues>({
             maxWidth={false}
             scroll="paper"
             aria-labelledby={config.dialogId}
-            PaperProps={{ sx: squareDialogPaperSx }}
+            slotProps={{ paper: { sx: squareDialogPaperSx } }}
           >
             <DialogTitle id={config.dialogId} sx={{ fontWeight: 800, flexShrink: 0 }}>
               {config.title}

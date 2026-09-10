@@ -483,10 +483,12 @@ export function AdminPortfolioEditor() {
             }
             fullWidth
             required
-            inputProps={{
-              inputMode: 'numeric',
-              pattern: '\\d{4}',
-              maxLength: 4,
+            slotProps={{
+              htmlInput: {
+                inputMode: 'numeric',
+                pattern: '\\d{4}',
+                maxLength: 4,
+              },
             }}
             helperText="4-digit year only (e.g. 2026)."
           />

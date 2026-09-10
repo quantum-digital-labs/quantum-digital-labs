@@ -8,11 +8,12 @@ import { apiClient } from './apiClient';
 
 export type ContentKind = 'jobs' | 'internships' | 'projects' | 'portfolio' | 'blog';
 
-export type ContentRecord = Record<string, unknown> & {
+export type ContentRecord = {
   id?: string;
   slug?: string;
   title?: string;
   published?: boolean;
+  role?: unknown;
 };
 
 export type JobContent = JobListing & { published?: boolean };
@@ -47,7 +48,7 @@ async function getKind<T>(kind: ContentKind, id: string): Promise<T> {
   return data;
 }
 
-async function createKind<T>(kind: ContentKind, body: ContentRecord): Promise<T> {
+async function createKind<T>(kind: ContentKind, body: object): Promise<T> {
   const { data } = await apiClient.post<T>(kindPath(kind), body);
   return data;
 }
@@ -55,7 +56,7 @@ async function createKind<T>(kind: ContentKind, body: ContentRecord): Promise<T>
 async function updateKind<T>(
   kind: ContentKind,
   id: string,
-  body: ContentRecord,
+  body: object,
 ): Promise<T> {
   const { data } = await apiClient.patch<T>(
     `${kindPath(kind)}/${encodeURIComponent(id)}`,
@@ -71,8 +72,8 @@ async function deleteKind(kind: ContentKind, id: string): Promise<void> {
 // —— Jobs ——
 export const fetchJobs = () => listKind<JobContent>('jobs');
 export const fetchJob = (id: string) => getKind<JobContent>('jobs', id);
-export const createJob = (body: ContentRecord) => createKind<JobContent>('jobs', body);
-export const updateJob = (id: string, body: ContentRecord) =>
+export const createJob = (body: object) => createKind<JobContent>('jobs', body);
+export const updateJob = (id: string, body: object) =>
   updateKind<JobContent>('jobs', id, body);
 export const deleteJob = (id: string) => deleteKind('jobs', id);
 
@@ -80,18 +81,18 @@ export const deleteJob = (id: string) => deleteKind('jobs', id);
 export const fetchInternships = () => listKind<InternshipContent>('internships');
 export const fetchInternship = (id: string) =>
   getKind<InternshipContent>('internships', id);
-export const createInternship = (body: ContentRecord) =>
+export const createInternship = (body: object) =>
   createKind<InternshipContent>('internships', body);
-export const updateInternship = (id: string, body: ContentRecord) =>
+export const updateInternship = (id: string, body: object) =>
   updateKind<InternshipContent>('internships', id, body);
 export const deleteInternship = (id: string) => deleteKind('internships', id);
 
 // —— Projects ——
 export const fetchProjects = () => listKind<ProjectContent>('projects');
 export const fetchProject = (id: string) => getKind<ProjectContent>('projects', id);
-export const createProject = (body: ContentRecord) =>
+export const createProject = (body: object) =>
   createKind<ProjectContent>('projects', body);
-export const updateProject = (id: string, body: ContentRecord) =>
+export const updateProject = (id: string, body: object) =>
   updateKind<ProjectContent>('projects', id, body);
 export const deleteProject = (id: string) => deleteKind('projects', id);
 
@@ -99,18 +100,18 @@ export const deleteProject = (id: string) => deleteKind('projects', id);
 export const fetchPortfolio = () => listKind<PortfolioContent>('portfolio');
 export const fetchPortfolioItem = (id: string) =>
   getKind<PortfolioContent>('portfolio', id);
-export const createPortfolioItem = (body: ContentRecord) =>
+export const createPortfolioItem = (body: object) =>
   createKind<PortfolioContent>('portfolio', body);
-export const updatePortfolioItem = (id: string, body: ContentRecord) =>
+export const updatePortfolioItem = (id: string, body: object) =>
   updateKind<PortfolioContent>('portfolio', id, body);
 export const deletePortfolioItem = (id: string) => deleteKind('portfolio', id);
 
 // —— Blog ——
 export const fetchBlog = () => listKind<BlogContent>('blog');
 export const fetchBlogPost = (slug: string) => getKind<BlogContent>('blog', slug);
-export const createBlogPost = (body: ContentRecord) =>
+export const createBlogPost = (body: object) =>
   createKind<BlogContent>('blog', body);
-export const updateBlogPost = (slug: string, body: ContentRecord) =>
+export const updateBlogPost = (slug: string, body: object) =>
   updateKind<BlogContent>('blog', slug, body);
 export const deleteBlogPost = (slug: string) => deleteKind('blog', slug);
 
@@ -144,7 +145,7 @@ export async function fetchService(
 }
 
 export async function createServiceCategory(
-  body: ContentRecord,
+  body: object,
 ): Promise<ServiceCategoryContent> {
   const { data } = await apiClient.post<ServiceCategoryContent>(
     '/content/services/categories',
@@ -155,7 +156,7 @@ export async function createServiceCategory(
 
 export async function updateServiceCategory(
   categoryId: string,
-  body: ContentRecord,
+  body: object,
 ): Promise<ServiceCategoryContent> {
   const { data } = await apiClient.patch<ServiceCategoryContent>(
     `/content/services/categories/${encodeURIComponent(categoryId)}`,
@@ -172,7 +173,7 @@ export async function deleteServiceCategory(categoryId: string): Promise<void> {
 
 export async function createService(
   categoryId: string,
-  body: ContentRecord,
+  body: object,
 ): Promise<ServiceItemContent> {
   const { data } = await apiClient.post<ServiceItemContent>(
     `/content/services/${encodeURIComponent(categoryId)}`,
@@ -184,7 +185,7 @@ export async function createService(
 export async function updateService(
   categoryId: string,
   slug: string,
-  body: ContentRecord,
+  body: object,
 ): Promise<ServiceItemContent> {
   const { data } = await apiClient.patch<ServiceItemContent>(
     `/content/services/${encodeURIComponent(categoryId)}/${encodeURIComponent(slug)}`,
