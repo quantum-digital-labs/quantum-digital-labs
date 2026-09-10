@@ -1,0 +1,15 @@
+{
+  "name": "quantum-digital-labs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Quantum Digital Labs Pvt. Ltd. — corporate website platform",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "test:server": "npm test --prefix server",
+    "build": "npm run build --prefix client",
+    "build:server": "npm run build --prefix server",
+    "lint": "npm run lint --prefix client",
+    "preview": "npm run preview --prefix client"
+  }
+}

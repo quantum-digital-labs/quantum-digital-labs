@@ -1,0 +1,235 @@
+[
+  {
+    "id": "QDLPJ-0001",
+    "title": "Quantum Corporate Web Platform",
+    "category": "Web Application",
+    "clientType": "Corporate / Services company",
+    "timeline": "10–14 weeks",
+    "status": "Live concept delivery",
+    "overview": "A full corporate website for Quantum Digital Labs covering services, careers, internships, and lead capture — built as a modular React platform with clear conversion paths.",
+    "problem": "The business needed one digital home that explained IT, staffing, training, and marketing offerings without confusing visitors or breaking the path to quote and contact forms.",
+    "solution": "We designed a service taxonomy, role-ready careers and internship flows, and reusable page sections so marketing and delivery teams can keep content consistent as the company grows.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Material UI",
+      "Vite",
+      "React Router",
+      "Zod"
+    ],
+    "features": [
+      "Service categories with detail and quote CTAs",
+      "Careers and internship role listings",
+      "Validated contact and quote forms",
+      "Responsive layouts across desktop and mobile",
+      "SEO-friendly page structure and breadcrumbs"
+    ],
+    "deliverables": [
+      "Production-ready frontend architecture",
+      "Design-system aligned UI components",
+      "Content model for services and roles",
+      "Form validation and success states"
+    ],
+    "results": [
+      "Clearer service discovery for visitors",
+      "Consistent conversion paths to quote and contact",
+      "Reusable section system for future pages",
+      "Faster updates without redesigning every screen"
+    ],
+    "screenshots": [
+      "Homepage hero with brand and primary CTAs",
+      "Services grid and category detail pages",
+      "Contact and quote success confirmation states"
+    ],
+    "relatedIds": [
+      "QDLPJ-0002",
+      "QDLPJ-0003",
+      "QDLPJ-0004"
+    ]
+  },
+  {
+    "id": "QDLPJ-0002",
+    "title": "Careers & Recruitment Portal",
+    "category": "HR Tech / Web",
+    "clientType": "Hiring teams & candidates",
+    "timeline": "8–12 weeks",
+    "status": "Demo-ready",
+    "overview": "A candidate-facing recruitment experience with searchable open roles, detailed job pages, and validated applications including resume upload.",
+    "problem": "Hiring managers needed structured role discovery and clean application intake instead of scattered emails and incomplete candidate details.",
+    "solution": "Built filtered job listings, role detail pages with responsibilities and benefits, and an application form that captures personal, education, and experience data with file validation.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "React Hook Form",
+      "Zod",
+      "Material UI",
+      "File validation"
+    ],
+    "features": [
+      "Search and filter by location, department, experience",
+      "Role detail pages with skills and requirements",
+      "Apply flow with resume upload (PDF/DOC/DOCX)",
+      "Validation dialogs and success confirmations",
+      "Return path back to open roles after submit"
+    ],
+    "deliverables": [
+      "Job listing and detail UI",
+      "Candidate application workflow",
+      "Resume validation rules",
+      "Demo-ready hiring journey"
+    ],
+    "results": [
+      "Faster, cleaner candidate intake",
+      "Consistent application data for screening",
+      "Clearer role expectations for applicants",
+      "Reduced incomplete submissions through validation"
+    ],
+    "screenshots": [
+      "Open roles grid with filters",
+      "Job detail with apply panel",
+      "Application form and success panel"
+    ],
+    "relatedIds": [
+      "QDLPJ-0001",
+      "QDLPJ-0003"
+    ]
+  },
+  {
+    "id": "QDLPJ-0003",
+    "title": "Internship & Training Hub",
+    "category": "Education / EdTech",
+    "clientType": "Students & early-career talent",
+    "timeline": "6–10 weeks",
+    "status": "Live concept delivery",
+    "overview": "An internship and training discovery hub where learners browse role-based programs, review tech stacks, and apply with academic details.",
+    "problem": "Students struggled to understand which internship role fit them, what technologies they would learn, and how to apply in one clear place.",
+    "solution": "Created role-based internship cards, detailed program pages with outcomes and responsibilities, and an aligned application form for college and course information.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Material UI",
+      "React Hook Form",
+      "Zod"
+    ],
+    "features": [
+      "Internship roles by domain and technology",
+      "Tech stack and learning outcome sections",
+      "Eligibility and project examples",
+      "Apply form with academic fields and resume",
+      "Sticky apply panel on role detail pages"
+    ],
+    "deliverables": [
+      "Program catalog UI",
+      "Role detail templates",
+      "Student application flow",
+      "Content structure for future programs"
+    ],
+    "results": [
+      "Improved program discoverability",
+      "Clearer eligibility and outcome messaging",
+      "Reusable education content model",
+      "Higher-quality internship applications"
+    ],
+    "screenshots": [
+      "Internship roles listing with filters",
+      "Role detail with tech stack highlight",
+      "Student application success confirmation"
+    ],
+    "relatedIds": [
+      "QDLPJ-0001",
+      "QDLPJ-0002"
+    ]
+  },
+  {
+    "id": "QDLPJ-0004",
+    "title": "Growth Marketing Dashboard",
+    "category": "Digital Marketing",
+    "clientType": "Marketing & growth teams",
+    "timeline": "8–10 weeks",
+    "status": "Concept / demo",
+    "overview": "A campaign and analytics workspace concept for SEO, ads, and content performance — helping teams track channel health and plan next actions.",
+    "problem": "Marketing teams were juggling spreadsheets and platform logins without a single view of campaign progress, channel mix, and conversion signals.",
+    "solution": "Designed a dashboard-led experience with channel summaries, campaign status cards, and reporting views aligned to Quantum Digital Labs marketing services.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Chart-ready UI",
+      "Material UI",
+      "REST API ready"
+    ],
+    "features": [
+      "Channel overview for SEO, ads, and social",
+      "Campaign status and budget snapshots",
+      "Content calendar style planning blocks",
+      "Export-ready reporting placeholders",
+      "Service-linked CTAs for quote requests"
+    ],
+    "deliverables": [
+      "Marketing dashboard UI concept",
+      "Channel and campaign card system",
+      "Reporting layout templates",
+      "Integration-ready data hooks"
+    ],
+    "results": [
+      "Single place to review channel performance",
+      "Clearer handoff between marketing and sales",
+      "Faster weekly reporting conversations",
+      "Stronger demo story for marketing services"
+    ],
+    "screenshots": [
+      "Analytics overview with channel cards",
+      "Campaign performance panels",
+      "Planning and reporting layout"
+    ],
+    "relatedIds": [
+      "QDLPJ-0001",
+      "QDLPJ-0005"
+    ]
+  },
+  {
+    "id": "QDLPJ-0005",
+    "title": "Cloud Ops Console",
+    "category": "Cloud / DevOps",
+    "clientType": "Engineering & operations teams",
+    "timeline": "10–12 weeks",
+    "status": "Concept / demo",
+    "overview": "An operations console concept for deployments, environment health, and release checklists — supporting Quantum cloud and maintenance service narratives.",
+    "problem": "Delivery teams needed a clearer way to communicate deployment status, environment readiness, and support follow-ups to stakeholders.",
+    "solution": "Built a console-style UI with environment cards, pipeline stages, and monitoring summaries that map to cloud migration, CI/CD, and maintenance offerings.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Material UI",
+      "Status indicators",
+      "API-ready modules"
+    ],
+    "features": [
+      "Environment health overview",
+      "Deployment pipeline stages",
+      "Incident and maintenance notes",
+      "Release checklist templates",
+      "Ops summary for stakeholder updates"
+    ],
+    "deliverables": [
+      "Ops console UI concept",
+      "Environment and pipeline components",
+      "Release checklist patterns",
+      "Demo flow for cloud services"
+    ],
+    "results": [
+      "Clearer visibility of release readiness",
+      "Better stakeholder communication on ops status",
+      "Reusable patterns for cloud service demos",
+      "Stronger alignment with maintenance offerings"
+    ],
+    "screenshots": [
+      "Environment health dashboard",
+      "Pipeline and deployment stages",
+      "Release checklist and notes panel"
+    ],
+    "relatedIds": [
+      "QDLPJ-0001",
+      "QDLPJ-0004"
+    ]
+  }
+]
