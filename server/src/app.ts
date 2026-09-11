@@ -11,11 +11,10 @@ import apiRoutes from './routes';
 export function createApp() {
   const app = express();
 
-  app.use(
-    helmet({
-      crossOriginResourcePolicy: { policy: 'cross-origin' },
-    }),
-  );
+  const helmetMiddleware: express.RequestHandler = helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  });
+  app.use(helmetMiddleware);
   const allowedOrigins = env.CLIENT_URL.split(',')
     .map((value) => value.trim())
     .filter(Boolean);
