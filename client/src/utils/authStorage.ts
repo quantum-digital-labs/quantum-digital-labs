@@ -1,29 +1,26 @@
+import { supabase } from '../lib/supabaseClient';
 import type { AuthUser } from '../store/slices/authSlice';
-
-const SESSION_KEY = 'qdl_auth_session';
 
 export interface AuthSession {
   accessToken: string;
   user: AuthUser;
 }
 
-/** Persist JWT session after successful login/register against the API. */
-export function saveSession(session: AuthSession): void {
-  localStorage.setItem('accessToken', session.accessToken);
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+/** Supabase's client already persists the real session in localStorage and
+ * attaches it automatically to every request — this is now a no-op kept
+ * only so existing call sites (LoginPage, AdminLoginPage) don't need to
+ * change. */
+export function saveSession(_session: AuthSession): void {
+  // no-op
 }
 
+/** Synchronous session loading is no longer possible (Supabase's session
+ * check is async) — app boot now uses `restoreSession()` from authApi
+ * instead. Always returns null so any leftover call sites fall through. */
 export function loadSession(): AuthSession | null {
-  try {
-    const raw = localStorage.getItem(SESSION_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw) as AuthSession;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 export function clearSession(): void {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem(SESSION_KEY);
+  void supabase.auth.signOut();
 }
