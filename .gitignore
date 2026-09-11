@@ -11,3 +11,6 @@ coverage/
 !.vscode/extensions.json
 .idea/
 server/uploads/
+
+.vercel
+.env*

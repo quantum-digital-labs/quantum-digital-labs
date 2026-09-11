@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import os from 'os';
 import path from 'path';
 import { env } from './config/env';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
@@ -15,9 +16,19 @@ export function createApp() {
       crossOriginResourcePolicy: { policy: 'cross-origin' },
     }),
   );
+  const allowedOrigins = env.CLIENT_URL.split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+
   app.use(
     cors({
-      origin: env.CLIENT_URL,
+      origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+          return;
+        }
+        callback(null, false);
+      },
       credentials: true,
     }),
   );
@@ -27,8 +38,8 @@ export function createApp() {
 
   app.use(
     '/uploads',
-    express.static(path.resolve(process.cwd(), 'uploads'), {
-      fallthrough: false,
+    express.static(path.join(os.tmpdir(), 'quantum-uploads'), {
+      fallthrough: true,
       maxAge: '7d',
     }),
   );

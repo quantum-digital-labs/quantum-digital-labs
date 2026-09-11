@@ -1,9 +1,11 @@
+import { isDatabaseConnected } from '../db/pool';
 import { AppError } from '../utils/AppError';
 
-/** Thrown by services until PostgreSQL is wired in the next step. */
-export function assertDatabaseReady(): never {
-  throw new AppError(
-    'Database is not connected yet. PostgreSQL wiring comes next.',
-    503,
-  );
+export function assertDatabaseReady(): void {
+  if (!isDatabaseConnected()) {
+    throw new AppError(
+      'Database is not connected. Set DATABASE_URL and restart the API.',
+      503,
+    );
+  }
 }

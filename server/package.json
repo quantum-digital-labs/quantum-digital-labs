@@ -2,7 +2,7 @@
   "name": "quantum-digital-labs-server",
   "private": true,
   "version": "0.1.0",
-  "description": "Quantum Digital Labs API — Node, Express, TypeScript, PostgreSQL",
+  "description": "Quantum Digital Labs API — Node, Express, TypeScript, PostgreSQL (Supabase)",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

@@ -1,12 +1,19 @@
-import { Pool } from 'pg';
+import { Pool, type PoolConfig } from 'pg';
 import { env, isDatabaseConfigured } from '../config/env';
 
-/**
- * PostgreSQL pool placeholder.
- * Connection is intentionally deferred — set DATABASE_URL and call
- * `connectDatabase()` in the next step when you are ready.
- */
 let pool: Pool | null = null;
+
+export function createPoolConfig(connectionString: string): PoolConfig {
+  const needsSsl =
+    env.NODE_ENV === 'production' ||
+    /sslmode=require|neon\.tech|supabase\.(co|com)/i.test(connectionString);
+
+  return {
+    connectionString,
+    max: env.NODE_ENV === 'production' ? 1 : 10,
+    ssl: needsSsl ? { rejectUnauthorized: false } : undefined,
+  };
+}
 
 export function getPool(): Pool {
   if (!pool) {
@@ -33,9 +40,7 @@ export async function connectDatabase(): Promise<void> {
     return;
   }
 
-  pool = new Pool({
-    connectionString: env.DATABASE_URL,
-  });
+  pool = new Pool(createPoolConfig(env.DATABASE_URL));
 
   await pool.query('SELECT 1');
   console.log('[db] PostgreSQL connected');

@@ -7,7 +7,10 @@ export async function submitContact(
   next: NextFunction,
 ) {
   try {
-    const result = await inquiriesService.createContactInquiry(req.body);
+    const result = await inquiriesService.createContactInquiry({
+      ...req.body,
+      userId: req.user?.id,
+    });
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -20,7 +23,10 @@ export async function submitQuote(
   next: NextFunction,
 ) {
   try {
-    const result = await inquiriesService.createQuoteInquiry(req.body);
+    const result = await inquiriesService.createQuoteInquiry({
+      ...req.body,
+      userId: req.user?.id,
+    });
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -33,7 +39,10 @@ export async function submitDemo(
   next: NextFunction,
 ) {
   try {
-    const result = await inquiriesService.createDemoInquiry(req.body);
+    const result = await inquiriesService.createDemoInquiry({
+      ...req.body,
+      userId: req.user?.id,
+    });
     res.status(201).json(result);
   } catch (error) {
     next(error);

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Pool } from 'pg';
 import { env, isDatabaseConfigured } from '../config/env';
+import { createPoolConfig } from './pool';
 import { syncBusinessIdCounters } from '../utils/businessId';
 
 async function migrate() {
@@ -13,7 +14,7 @@ async function migrate() {
   const schemaPath = path.resolve(__dirname, 'schema.sql');
   const sql = fs.readFileSync(schemaPath, 'utf8');
 
-  const pool = new Pool({ connectionString: env.DATABASE_URL });
+  const pool = new Pool(createPoolConfig(env.DATABASE_URL));
 
   try {
     console.log('[migrate] Applying schema to PostgreSQL...');

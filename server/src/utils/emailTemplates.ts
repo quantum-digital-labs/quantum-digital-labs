@@ -1,6 +1,10 @@
 import { env, isSmtpConfigured } from '../config/env';
 import { sendMail } from './mail';
 
+function clientOrigin(): string {
+  return env.CLIENT_URL.split(',')[0]?.trim() || env.CLIENT_URL;
+}
+
 async function safeSend(
   label: string,
   input: { to: string; subject: string; text: string; html: string },
@@ -26,7 +30,7 @@ export async function sendWelcomeEmail(input: {
   code: string;
   token: string;
 }): Promise<boolean> {
-  const verifyUrl = `${env.CLIENT_URL}/verify-email?token=${encodeURIComponent(input.token)}`;
+  const verifyUrl = `${clientOrigin()}/verify-email?token=${encodeURIComponent(input.token)}`;
   const subject = 'Welcome to Quantum Digital Labs';
   const text = [
     'Welcome to Quantum Digital Labs!',
@@ -73,7 +77,7 @@ export async function sendVerificationEmail(input: {
   code: string;
   token: string;
 }): Promise<boolean> {
-  const verifyUrl = `${env.CLIENT_URL}/verify-email?token=${encodeURIComponent(input.token)}`;
+  const verifyUrl = `${clientOrigin()}/verify-email?token=${encodeURIComponent(input.token)}`;
   const subject = 'Verify your Quantum Digital Labs account';
   const text = [
     'Please verify your Quantum Digital Labs account.',
@@ -171,6 +175,47 @@ export async function sendInternshipApplicationEmail(input: {
   `;
 
   return safeSend('internship application email', {
+    to: input.email,
+    subject,
+    text,
+    html,
+  });
+}
+
+export async function sendInquiryReceivedEmail(input: {
+  email: string;
+  name: string;
+  type: 'contact' | 'quote' | 'demo';
+  referenceNumber: string;
+}): Promise<boolean> {
+  const labels: Record<typeof input.type, string> = {
+    contact: 'contact request',
+    quote: 'quote request',
+    demo: 'demo request',
+  };
+  const label = labels[input.type];
+  const subject = `We received your ${label} — ${input.referenceNumber}`;
+  const text = [
+    `Hi ${input.name},`,
+    '',
+    `Thank you for your ${label} to Quantum Digital Labs.`,
+    '',
+    `Your reference number is: ${input.referenceNumber}`,
+    '',
+    'Our team will review this and get back to you shortly.',
+    '',
+    '— Quantum Digital Labs',
+  ].join('\n');
+
+  const html = `
+    <p>Hi ${input.name},</p>
+    <p>Thank you for your ${label} to Quantum Digital Labs.</p>
+    <p>Your reference number is: <strong>${input.referenceNumber}</strong></p>
+    <p>Our team will review this and get back to you shortly.</p>
+    <p>— Quantum Digital Labs</p>
+  `;
+
+  return safeSend('inquiry received email', {
     to: input.email,
     subject,
     text,

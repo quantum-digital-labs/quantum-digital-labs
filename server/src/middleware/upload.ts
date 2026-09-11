@@ -1,13 +1,15 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import multer from 'multer';
 import { AppError } from '../utils/AppError';
 
-const resumesDir = path.resolve(process.cwd(), 'uploads', 'resumes');
-const projectsDir = path.resolve(process.cwd(), 'uploads', 'projects');
-const portfolioDir = path.resolve(process.cwd(), 'uploads', 'portfolio');
-const coversDir = path.resolve(process.cwd(), 'uploads', 'covers');
-const defaultsDir = path.resolve(process.cwd(), 'uploads', 'defaults');
+const uploadRoot = path.join(os.tmpdir(), 'quantum-uploads');
+const resumesDir = path.join(uploadRoot, 'resumes');
+const projectsDir = path.join(uploadRoot, 'projects');
+const portfolioDir = path.join(uploadRoot, 'portfolio');
+const coversDir = path.join(uploadRoot, 'covers');
+const defaultsDir = path.join(uploadRoot, 'defaults');
 const assetsDefaultsDir = path.resolve(process.cwd(), 'assets', 'defaults');
 
 for (const dir of [
