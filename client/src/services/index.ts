@@ -1,4 +1,3 @@
-export { apiClient } from './apiClient';
 export {
   loginRequest,
   registerRequest,

@@ -106,26 +106,26 @@ export async function verifyEmailRequest(token: string): Promise<MessageResponse
 export async function verifyEmailByCodeRequest(
   email: string,
   code: string,
-): Promise<MessageResponse> {
+): Promise<AuthResponse> {
   const normalizedEmail = email.trim().toLowerCase();
-  const { error } = await supabase.auth.verifyOtp({
+  const { data, error } = await supabase.auth.verifyOtp({
     email: normalizedEmail,
     token: code,
     type: 'signup',
   });
 
-  if (error) {
+  if (error || !data.session || !data.user) {
     throw new Error(
-      /expired/i.test(error.message)
+      /expired/i.test(error?.message ?? '')
         ? 'Verification code has expired. Please request a new one.'
         : 'Invalid verification code',
     );
   }
 
-  // verifyOtp signs the user in as a side effect; sign back out so the
-  // normal sign-in form (with a real password check) still runs afterwards.
-  await supabase.auth.signOut();
-  return { message: 'Email verified successfully', email: normalizedEmail };
+  // verifyOtp signs the user in as a side effect — keep that session so the
+  // user lands signed in immediately, with no separate password re-entry.
+  const user = await fetchProfile(data.user.id, data.user.email ?? normalizedEmail);
+  return { accessToken: data.session.access_token, user };
 }
 
 export async function resendVerificationRequest(

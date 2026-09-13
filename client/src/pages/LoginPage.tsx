@@ -164,18 +164,8 @@ export function LoginPage() {
 
     setVerifyingCode(true);
     try {
-      await verifyEmailByCodeRequest(email, code);
-      if (passwordValue) {
-        const session = await loginRequest(email, passwordValue);
-        finishSignIn(session);
-        return;
-      }
-      alert.show({
-        title: 'Email verified',
-        message: 'Your email is verified. Enter your password and sign in.',
-        severity: 'success',
-      });
-      setNeedsVerification(false);
+      const session = await verifyEmailByCodeRequest(email, code);
+      finishSignIn(session);
     } catch (err) {
       alert.show({
         title: 'Could not verify',

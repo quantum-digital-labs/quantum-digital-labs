@@ -10,7 +10,6 @@ coverage/
 .vscode/*
 !.vscode/extensions.json
 .idea/
-server/uploads/
 
 .vercel
 .env*

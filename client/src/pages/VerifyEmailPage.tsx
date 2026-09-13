@@ -10,13 +10,16 @@ import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { AlertDialog, AuthShell, PageContainer } from '../components';
 import { COMPANY, ROUTES } from '../constants';
+import { useAppDispatch } from '../hooks';
 import { useAlertPopup } from '../hooks/useValidationPopup';
 import {
   resendVerificationRequest,
   verifyEmailByCodeRequest,
   verifyEmailRequest,
 } from '../services';
+import { setCredentials } from '../store/slices/authSlice';
 import { authPanel, goldLinkSx, primaryButtonSx } from '../theme/surfaces';
+import { saveSession } from '../utils/authStorage';
 
 type VerifyState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -33,6 +36,7 @@ function holdViewportOnFocus() {
 }
 
 export function VerifyEmailPage() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -109,13 +113,15 @@ export function VerifyEmailPage() {
 
     setVerifyingCode(true);
     try {
-      const result = await verifyEmailByCodeRequest(email, code);
+      const session = await verifyEmailByCodeRequest(email, code);
+      saveSession(session);
+      dispatch(setCredentials(session));
       setState('success');
-      setMessage(result.message);
+      setMessage('Email verified. You are now signed in.');
       setGoLogin(true);
       alert.show({
         title: 'Email verified',
-        message: 'Your email is verified. Continue to sign in.',
+        message: 'Your email is verified and you are now signed in.',
         severity: 'success',
       });
     } catch (err) {
@@ -128,18 +134,17 @@ export function VerifyEmailPage() {
     }
   };
 
-  const goToSignIn = () => {
-    navigate(ROUTES.login, {
-      replace: true,
-      state: { email: resendEmail.trim() },
-    });
+  /** After verifying, the user is already signed in (verifyOtp establishes a
+   * session) — send them onward instead of back through a login form. */
+  const goAfterVerify = () => {
+    navigate(ROUTES.home, { replace: true });
   };
 
   const handleAlertClose = () => {
     alert.close();
     if (goLogin) {
       setGoLogin(false);
-      goToSignIn();
+      goAfterVerify();
     }
   };
 
@@ -215,7 +220,7 @@ export function VerifyEmailPage() {
               variant="contained"
               size="large"
               fullWidth
-              onClick={goToSignIn}
+              onClick={goAfterVerify}
               sx={{
                 ...primaryButtonSx,
                 bgcolor: 'accent.main',
@@ -223,7 +228,7 @@ export function VerifyEmailPage() {
                 '&:hover': { bgcolor: 'accent.light' },
               }}
             >
-              Continue to sign in
+              Continue
             </Button>
           ) : (
             <Stack spacing={1.75}>
